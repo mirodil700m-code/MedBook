@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <meta name="theme-color" content="#0a0f1c" />
+  <meta name="description" content="MedBook — zamonaviy tibbiy ekotizim. Shifokor qidirish, onlayn qabul, AI simptom tekshirgich." />
+  <title>MedBook — Premium Tibbiy Ekotizim</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body>
+
+  <!-- ============ BACKGROUND ORBS ============ -->
+  <div class="bg-orbs" aria-hidden="true">
+    <span class="orb orb-1"></span>
+    <span class="orb orb-2"></span>
+    <span class="orb orb-3"></span>
+  </div>
+
+  <!-- ============ NAVBAR ============ -->
+  <header class="navbar glass" id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="logo">
+        <span class="logo-icon"><i class="fa-solid fa-heart-pulse"></i></span>
+        <span class="logo-text">Med<span>Book</span></span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#home" class="nav-link active" data-i18n="nav_home">Bosh sahifa</a>
+        <a href="#features" class="nav-link" data-i18n="nav_features">Imkoniyatlar</a>
+        <a href="#doctors" class="nav-link" data-i18n="nav_doctors">Shifokorlar</a>
+        <a href="#dashboard" class="nav-link" data-i18n="nav_dashboard">Kabinet</a>
+        <a href="#chat" class="nav-link" data-i18n="nav_chat">Chat</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-btn" id="langBtn" title="Til">
+          <i class="fa-solid fa-globe"></i>
+          <span id="langLabel">UZ</span>
+        </button>
+        <button class="icon-btn" id="themeBtn" title="Rejim">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <button class="btn btn-ghost" id="registerBtn" data-i18n="register">Ro'yxatdan o'tish</button>
+        <button class="btn btn-primary" id="loginBtn">
+          <i class="fa-solid fa-right-to-bracket"></i>
+          <span data-i18n="login">Kirish</span>
+        </button>
+        <button class="icon-btn mobile-toggle" id="menuToggle" aria-label="Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+                <!-- YANGI: Qo'ng'iroqcha -->
+        <button class="icon-btn" id="notifBtn" title="Bildirishnomalar" style="position:relative;">
+          <i class="fa-solid fa-bell"></i>
+          <span class="notif-badge">2</span>
+        </button>
+      </div>
+    </div>
+    
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="home">
+    <div class="hero-container">
+      <div class="hero-badge reveal">
+        <span class="pulse-dot"></span>
+        <span data-i18n="hero_badge">Yangi avlod tibbiy platformasi</span>
+      </div>
+
+      <h1 class="hero-title reveal">
+        <span data-i18n="hero_title_1">Sog'lig'ingiz uchun</span>
+        <span class="gradient-text" data-i18n="hero_title_2">aqlli yechim</span>
+      </h1>
+
+      <p class="hero-subtitle reveal" data-i18n="hero_subtitle">
+        Shifokor qidirish, onlayn qabul va raqamli tibbiy tarix — barchasi bir joyda. Zamonaviy, tez va ishonchli.
+      </p>
+
+      <div class="hero-actions reveal">
+        <button class="btn btn-primary btn-lg" id="findDoctorBtn">
+          <i class="fa-solid fa-stethoscope"></i>
+          <span data-i18n="find_doctor">Shifokor topish</span>
+        </button>
+        <button class="btn btn-ghost btn-lg" id="aiSymptomBtn">
+          <i class="fa-solid fa-brain"></i>
+          <span data-i18n="ai_check">AI Simptom Tekshir</span>
+        </button>
+      </div>
+
+      <div class="hero-stats reveal">
+        <div class="stat">
+          <span class="stat-value" data-count="1200">0</span><span>+</span>
+          <span class="stat-label" data-i18n="stat_doctors">Shifokorlar</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" data-count="85000">0</span><span>+</span>
+          <span class="stat-label" data-i18n="stat_patients">Bemorlar</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" data-count="4.9" data-decimal="true">0</span>
+          <span class="stat-label" data-i18n="stat_rating">Reyting</span>
+        </div>
+      </div>
+      
+      <!-- QIDIRUV OYNASI -->
+      <div class="search-box glass reveal" id="searchBox">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="text" id="heroSearch" placeholder="Shifokor ismi, kasallik yoki simptom..." data-i18n-placeholder="search_placeholder" autocomplete="off" />
+        
+        <!-- Mikrofon -->
+        <button class="icon-btn" id="voiceSearchBtn" title="Ovozli qidiruv" style="border:none; background:transparent; box-shadow:none; padding: 0 10px;">
+          <i class="fa-solid fa-microphone" style="color:var(--emerald); font-size:1.2rem;"></i>
+        </button>
+
+        <button class="btn btn-primary" id="searchBtn">
+          <span data-i18n="search">Qidirish</span>
+        </button>
+        <div class="search-suggestions" id="searchSuggestions"></div>
+      </div>
+  </section>
+
+  <!-- ============ FEATURES ============ -->
+  <section class="features" id="features">
+    <div class="section-header reveal">
+      <span class="section-eyebrow" data-i18n="features_eyebrow">IMKONIYATLAR</span>
+      <h2 data-i18n="features_title">Nega aynan MedBook?</h2>
+      <p data-i18n="features_subtitle">12+ zamonaviy funksiya — barcha tibbiy ehtiyojlaringiz uchun</p>
+    </div>
+
+    <div class="features-grid">
+      <article class="feature-card glass reveal" onclick="openFeature('ai')">
+        <div class="feature-icon emerald"><i class="fa-solid fa-brain"></i></div>
+        <h3 data-i18n="feat_ai">AI Simptom Tekshirgich</h3>
+        <p data-i18n="feat_ai_desc">Shikoyatlaringizni yozing — AI qaysi mutaxassisga uchrashishni tavsiya qiladi.</p>
+        <span class="feature-link">Sinab ko'rish <i class="fa-solid fa-arrow-right"></i></span>
+      </article>
+
+      <article class="feature-card glass reveal" onclick="openFeature('tele')">
+        <div class="feature-icon cyan"><i class="fa-solid fa-video"></i></div>
+        <h3 data-i18n="feat_tele">Video Konsultatsiya</h3>
+        <p data-i18n="feat_tele_desc">WebRTC asosidagi xavfsiz video-qo'ng'iroq va jonli chat.</p>
+        <span class="feature-link">Boshlash <i class="fa-solid fa-arrow-right"></i></span>
+      </article>
+
+      <article class="feature-card glass reveal" onclick="openFeature('booking')">
+        <div class="feature-icon violet"><i class="fa-solid fa-calendar-check"></i></div>
+        <h3 data-i18n="feat_booking">Real-time Booking</h3>
+        <p data-i18n="feat_booking_desc">Bo'sh vaqtlarni real vaqtda ko'rish va bir bosishda band qilish.</p>
+        <span class="feature-link">Band qilish <i class="fa-solid fa-arrow-right"></i></span>
+      </article>
+
+      <article class="feature-card glass reveal" onclick="openFeature('ehr')">
+        <div class="feature-icon amber"><i class="fa-solid fa-file-medical"></i></div>
+        <h3 data-i18n="feat_ehr">Raqamli Tibbiy Tarix</h3>
+        <p data-i18n="feat_ehr_desc">Barcha tahlillar, retseptlar va xulosalar bir joyda, PDF yuklab olish bilan.</p>
+        <span class="feature-link">Ko'rish <i class="fa-solid fa-arrow-right"></i></span>
+      </article>
+
+      <article class="feature-card glass reveal" onclick="openFeature('pill')">
+        <div class="feature-icon rose"><i class="fa-solid fa-pills"></i></div>
+        <h3 data-i18n="feat_pill">Dori Eslatmasi</h3>
+        <p data-i18n="feat_pill_desc">Retsept bo'yicha dori ichish vaqtini eslatuvchi push-bildirishnomalar.</p>
+        <span class="feature-link">Sozlash <i class="fa-solid fa-arrow-right"></i></span>
+      </article>
+
+      <article class="feature-card glass reveal" onclick="openFeature('map')">
+        <div class="feature-icon teal"><i class="fa-solid fa-map-location-dot"></i></div>
+        <h3 data-i18n="feat_map">Geo-Xarita</h3>
+        <p data-i18n="feat_map_desc">Eng yaqin klinikalarni xaritada ko'ring va marshrut oling.</p>
+        <span class="feature-link">Xaritani ochish <i class="fa-solid fa-arrow-right"></i></span>
+      </article>
+
+      <article class="feature-card glass reveal" onclick="openFeature('ocr')">
+        <div class="feature-icon emerald"><i class="fa-solid fa-camera"></i></div>
+        <h3 data-i18n="feat_ocr">OCR Analiz Skaner</h3>
+        <p data-i18n="feat_ocr_desc">Qog'oz analizlarni rasmga oling — tizim matnni raqamlashtiradi.</p>
+        <span class="feature-link">Skanerlash <i class="fa-solid fa-arrow-right"></i></span>
+      </article>
+
+      <article class="feature-card glass reveal" onclick="openFeature('pay')">
+        <div class="feature-icon cyan"><i class="fa-solid fa-credit-card"></i></div>
+        <h3 data-i18n="feat_pay">Onlayn To'lov</h3>
+        <p data-i18n="feat_pay_desc">Click, Payme, Visa/Mastercard — bir bosishda to'lov.</p>
+        <span class="feature-link">To'lash <i class="fa-solid fa-arrow-right"></i></span>
+      </article>
+
+      <article class="feature-card glass reveal" onclick="openFeature('rating')">
+        <div class="feature-icon amber"><i class="fa-solid fa-star"></i></div>
+        <h3 data-i18n="feat_rating">Reyting va Sharhlar</h3>
+        <p data-i18n="feat_rating_desc">Yulduzchali reyting, matnli va audio sharhlar.</p>
+        <span class="feature-link">Ko'rish <i class="fa-solid fa-arrow-right"></i></span>
+      </article>
+
+      <article class="feature-card glass reveal" onclick="openFeature('fa rites')">
+        <div class="feature-icon rose"><i class="fa-solid fa-heart"></i></div>
+        <h3 data-i18n="feat_fav">Sevimli Shifokorlar</h3>
+        <p data-i18n="feat_fav_desc">Doimiy shifokorlarni sevimlilarga qo'shib, tez ulanish.</p>
+        <span class="feature-link">Boshqarish <i class="fa-solid fa-arrow-right"></i></span>
+      </article>
+
+      <article class="feature-card glass reveal" onclick="openFeature('multilang')">
+        <div class="feature-icon violet"><i class="fa-solid fa-language"></i></div>
+        <h3 data-i18n="feat_lang">3 Tilda Muloqot</h3>
+        <p data-i18n="feat_lang_desc">O'zbek, Rus va Ingliz tillari — sahifa qayta yuklanmaydi.</p>
+        <span class="feature-link">Almashtirish <i class="fa-solid fa-arrow-right"></i></span>
+      </article>
+
+      <article class="feature-card glass reveal" onclick="openFeature('pdf')">
+        <div class="feature-icon teal"><i class="fa-solid fa-file-pdf"></i></div>
+        <h3 data-i18n="feat_pdf">PDF Generator</h3>
+        <p data-i18n="feat_pdf_desc">Retseptlar, tahlillar va to'lov cheklarini PDF'da yuklab oling.</p>
+        <span class="feature-link">Yuklab olish <i class="fa-solid fa-arrow-right"></i></span>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ DOCTORS ============ -->
+  <section class="doctors-section" id="doctors">
+    <div class="section-header reveal">
+      <span class="section-eyebrow" data-i18n="doctors_eyebrow">SHIFOKORLAR</span>
+      <h2 data-i18n="doctors_title">Malakali shifokorlar</h2>
+      <p data-i18n="doctors_subtitle">1200+ shifokor — barchasi litsenziyalangan va tekshirilgan</p>
+    </div>
+
+    <div class="filters glass reveal">
+      <div class="filter-group">
+        <label data-i18n="filter_specialty">Mutaxassislik</label>
+        <select id="filterSpecialty">
+          <option value="" data-i18n="all">Barchasi</option>
+          <option value="Kardiolog">Kardiolog</option>
+          <option value="Neyrolog">Neyrolog</option>
+          <option value="Terapevt">Terapevt</option>
+          <option value="Pediatr">Pediatr</option>
+          <option value="Oftalmolog">Oftalmolog</option>
+          <option value="Dermatolog">Dermatolog</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label data-i18n="filter_rating">Reyting</label>
+        <select id="filterRating">
+          <option value="0" data-i18n="all">Barchasi</option>
+          <option value="4.5">4.5+</option>
+          <option value="4.8">4.8+</option>
+          <option value="4.9">4.9+</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label data-i18n="filter_price">Narx</label>
+        <select id="filterPrice">
+          <option value="0" data-i18n="all">Barchasi</option>
+          <option value="150000">150k gacha</option>
+          <option value="120000">120k gacha</option>
+          <option value="100000">100k gacha</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label data-i18n="filter_today">Bugun bo'sh</label>
+        <select id="filterToday">
+          <option value="all" data-i18n="all">Barchasi</option>
+          <option value="yes" data-i18n="yes">Ha</option>
+          <option value="no" data-i18n="no">Yo'q</option>
+        </select>
+      </div>
+      <button class="btn btn-primary" id="applyFilters">
+        <i class="fa-solid fa-filter"></i>
+        <span data-i18n="apply">Qo'llash</span>
+      </button>
+    </div>
+
+    <div class="doctors-grid" id="doctorsGrid"></div>
+  </section>
+
+  <!-- ============ DASHBOARD ============ -->
+  <section class="dashboard" id="dashboard">
+    <div class="section-header reveal">
+      <span class="section-eyebrow" data-i18n="dash_eyebrow">BEMOR KABINETI</span>
+      <h2 data-i18n="dash_title">Sizning tibbiy markazingiz</h2>
+      <p data-i18n="dash_subtitle">Barcha ma'lumotlar bir joyda — qabullar, tahlillar, retseptlar</p>
+    </div>
+
+    <div class="login-prompt glass reveal" id="loginPrompt">
+      <i class="fa-solid fa-lock"></i>
+      <h3 data-i18n="need_login">Kabinetga kirish uchun tizimga kiring</h3>
+      <p data-i18n="need_login_desc">Ro'yxatdan o'ting yoki hisobingizga kiring</p>
+      <div class="login-prompt-actions">
+        <button class="btn btn-primary" id="loginPromptBtn">
+          <i class="fa-solid fa-right-to-bracket"></i>
+          <span data-i18n="login">Kirish</span>
+        </button>
+        <button class="btn btn-ghost" id="registerPromptBtn">
+          <i class="fa-solid fa-user-plus"></i>
+          <span data-i18n="register">Ro'yxatdan o'tish</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="dashboard-container" id="dashboardContent" style="display:none;">
+      <aside class="dash-sidebar glass">
+        <div class="user-card">
+          <div class="avatar gradient-emerald" id="userAvatar">AK</div>
+          <div>
+            <h4 id="userName">Aziza Karimova</h4>
+            <span class="text-muted" data-i18n="patient_label">Bemor</span>
+          </div>
+        </div>
+        <nav class="dash-nav">
+          <a href="#" class="dash-link active" data-tab="overview"><i class="fa-solid fa-house"></i> <span data-i18n="dash_overview">Umumiy</span></a>
+          <a href="#" class="dash-link" data-tab="appointments"><i class="fa-solid fa-calendar"></i> <span data-i18n="dash_appointments">Qabullar</span></a>
+          <a href="#" class="dash-link" data-tab="records"><i class="fa-solid fa-file-waveform"></i> <span data-i18n="dash_records">Tahlillar</span></a>
+          <a href="#" class="dash-link" data-tab="prescriptions"><i class="fa-solid fa-prescription-bottle-medical"></i> <span data-i18n="dash_prescriptions">Retseptlar</span></a>
+          <a href="#" class="dash-link" data-tab="favorites"><i class="fa-solid fa-heart"></i> <span data-i18n="dash_favorites">Sevimlilar</span></a>
+          <a href="#" class="dash-link" data-tab="wallet"><i class="fa-solid fa-wallet"></i> <span data-i18n="dash_wallet">Hamyon</span></a>
+          <a href="#" class="dash-link" id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> <span data-i18n="logout">Chiqish</span></a>
+        </nav>
+      </aside>
+
+      <div class="dash-main">
+        <div class="dash-tab active" data-tab="overview">
+          <div class="dash-stats">
+            <div class="stat-card glass">
+              <div class="stat-card-icon cyan"><i class="fa-solid fa-calendar-check"></i></div>
+              <div>
+                <span class="stat-card-label" data-i18n="upcoming">Kelgusi qabul</span>
+                <h3 id="statAppointments">0</h3>
+              </div>
+            </div>
+            <div class="stat-card glass">
+              <div class="stat-card-icon emerald"><i class="fa-solid fa-pills"></i></div>
+              <div>
+                <span class="stat-card-label" data-i18n="active_pills">Faol retsept</span>
+                <h3 id="statPills">0</h3>
+              </div>
+            </div>
+            <div class="stat-card glass">
+              <div class="stat-card-icon violet"><i class="fa-solid fa-file-waveform"></i></div>
+              <div>
+                <span class="stat-card-label" data-i18n="recent_tests">Yangi tahlillar</span>
+                <h3 id="statTests">0</h3>
+              </div>
+            </div>
+            <div class="stat-card glass">
+              <div class="stat-card-icon amber"><i class="fa-solid fa-wallet"></i></div>
+              <div>
+                <span class="stat-card-label" data-i18n="balance">Balans</span>
+                <h3 id="statBalance">245 000 <small>so'm</small></h3>
+              </div>
+            </div>
+          </div>
+
+          <div class="dash-panel glass">
+            <div class="panel-header">
+              <h3><i class="fa-solid fa-calendar-day"></i> <span data-i18n="next_appointments">Kelgusi qabullar</span></h3>
+              <a href="#" class="link" data-tab="appointments" data-i18n="see_all">Barchasi</a>
+            </div>
+            <div class="appointment-list" id="appointmentList"></div>
+          </div>
+
+          <div class="dash-panel glass">
+            <div class="panel-header">
+              <h3><i class="fa-solid fa-user-doctor"></i> <span data-i18n="recommended_doctors">Tavsiya etilgan shifokorlar</span></h3>
+              <a href="#doctors" class="link" data-i18n="see_all">Barchasi</a>
+            </div>
+            <div class="doctor-grid" id="recommendedDoctors"></div>
+          </div>
+        </div>
+
+        <div class="dash-tab" data-tab="appointments">
+          <div class="dash-panel glass">
+            <div class="panel-header">
+              <h3><i class="fa-solid fa-calendar"></i> <span data-i18n="all_appointments">Barcha qabullar</span></h3>
+              <button class="btn btn-primary" id="newBookingBtn">
+                <i class="fa-solid fa-plus"></i> <span data-i18n="new_booking">Yangi qabul</span>
+              </button>
+            </div>
+            <div class="appointment-list" id="allAppointments"></div>
+          </div>
+        </div>
+
+        <div class="dash-tab" data-tab="records">
+          <div class="dash-panel glass">
+            <div class="panel-header">
+              <h3><i class="fa-solid fa-file-waveform"></i> <span data-i18n="test_results">Tahlil natijalari</span></h3>
+              <button class="btn btn-ghost" onclick="openFeature('ocr')">
+                <i class="fa-solid fa-camera"></i> <span data-i18n="scan">Skanerlash</span>
+              </button>
+            </div>
+            <div class="records-list" id="recordsList"></div>
+          </div>
+        </div>
+
+        <div class="dash-tab" data-tab="prescriptions">
+          <div class="dash-panel glass">
+            <div class="panel-header">
+              <h3><i class="fa-solid fa-prescription-bottle-medical"></i> <span data-i18n="prescriptions">Retseptlar</span></h3>
+            </div>
+            <div class="prescriptions-list" id="prescriptionsList"></div>
+          </div>
+        </div>
+
+        <div class="dash-tab" data-tab="favorites">
+          <div class="dash-panel glass">
+            <div class="panel-header">
+              <h3><i class="fa-solid fa-heart"></i> <span data-i18n="favorites">Sevimlilar</span></h3>
+            </div>
+            <div class="favorites-list" id="favoritesList"></div>
+          </div>
+        </div>
+
+        <div class="dash-tab" data-tab="wallet">
+          <div class="dash-panel glass">
+            <div class="panel-header">
+              <h3><i class="fa-solid fa-wallet"></i> <span data-i18n="wallet">Hamyon</span></h3>
+            </div>
+            <div class="wallet-card">
+                          <!-- TRANZAKSIYALAR TARIXI QO'SHILDI -->
+            <div class="transactions-list glass" style="margin-top:24px; padding:24px; border-radius:var(--radius-xl);">
+              <h3 style="margin-bottom:16px; display:flex; align-items:center; gap:8px;">
+                <i class="fa-solid fa-clock-rotate-left" style="color:var(--emerald)"></i> Oxirgi tranzaksiyalar
+              </h3>
+              
+              <div class="transaction-item">
+                <div class="t-icon emerald"><i class="fa-solid fa-arrow-down"></i></div>
+                <div class="t-info">
+                  <h5>Hisobni to'ldirish</h5>
+                  <span>Payme orqali · 12-yanvar, 14:30</span>
+                </div>
+                <strong style="color:var(--emerald)">+150 000 so'm</strong>
+              </div>
+
+              <div class="transaction-item">
+                <div class="t-icon rose"><i class="fa-solid fa-arrow-up"></i></div>
+                <div class="t-info">
+                  <h5>Dr. Dilshod Rahimov</h5>
+                  <span>Qabul to'lovi · 10-yanvar, 10:15</span>
+                </div>
+                <strong style="color:var(--rose)">-120 000 so'm</strong>
+              </div>
+              
+              <div class="transaction-item">
+                <div class="t-icon emerald"><i class="fa-solid fa-arrow-down"></i></div>
+                <div class="t-info">
+                  <h5>Hisobni to'ldirish</h5>
+                  <span>Click orqali · 05-yanvar, 09:20</span>
+                </div>
+                <strong style="color:var(--emerald)">+200 000 so'm</strong>
+              </div>
+            </div>
+              <div class="wallet-balance">
+                <span data-i18n="balance">Balans</span>
+                <h2 id="walletBalance">245 000 <small>so'm</small></h2>
+              </div>
+              <div class="wallet-actions">
+                <button class="btn btn-primary" id="topupBtn">
+                  <i class="fa-solid fa-plus"></i> <span data-i18n="topup">To'ldirish</span>
+                </button>
+                <button class="btn btn-ghost" id="historyBtn">
+                  <i class="fa-solid fa-list"></i> <span data-i18n="history">Tarix</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCHEDULE ============ -->
+  <section class="schedule" id="schedule">
+    <div class="section-header reveal">
+      <span class="section-eyebrow" data-i18n="sched_eyebrow">SHIFOKOR PANELI</span>
+      <h2 data-i18n="sched_title">Qabul jadvali</h2>
+      <p data-i18n="sched_subtitle">Bo'sh vaqtlarni bir bosishda boshqaring</p>
+    </div>
+    <div class="schedule-container glass reveal">
+      <div class="schedule-header">
+        <div class="schedule-date-nav">
+          <button class="icon-btn" id="prevDay"><i class="fa-solid fa-chevron-left"></i></button>
+          <h3 id="currentDate">—</h3>
+          <button class="icon-btn" id="nextDay"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+        <div class="schedule-legend">
+          <span><i class="dot available"></i> <span data-i18n="legend_free">Bo'sh</span></span>
+          <span><i class="dot booked"></i> <span data-i18n="legend_booked">Band</span></span>
+          <span><i class="dot break"></i> <span data-i18n="legend_break">Tanaffus</span></span>
+        </div>
+      </div>
+      <div class="time-slots" id="timeSlots"></div>
+      <div class="schedule-actions">
+        <button class="btn btn-ghost" id="closeAllSlots">
+          <i class="fa-solid fa-lock"></i> <span data-i18n="close_all">Barchasini yopish</span>
+        </button>
+        <button class="btn btn-primary" id="saveSchedule">
+          <i class="fa-solid fa-floppy-disk"></i> <span data-i18n="save">Saqlash</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CHAT ============ -->
+  <section class="chat-section" id="chat">
+    <div class="section-header reveal">
+      <span class="section-eyebrow" data-i18n="chat_eyebrow">MULOQOT</span>
+      <h2 data-i18n="chat_title">Jonli Chat</h2>
+    </div>
+    <div class="chat-container glass reveal">
+      <aside class="chat-list">
+        <div class="chat-list-header">
+          <h4 data-i18n="messages">Xabarlar</h4>
+          <button class="icon-btn" id="newChatBtn"><i class="fa-solid fa-pen-to-square"></i></button>
+        </div>
+        <div class="chat-search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" placeholder="Qidirish..." data-i18n-placeholder="search" />
+        </div>
+        <div id="conversationList"></div>
+      </aside>
+      <div class="chat-window">
+        <div class="chat-window-header">
+          <div class="chat-user">
+            <div class="avatar gradient-cyan" id="activeChatAvatar">DR</div>
+            <div>
+              <h4 id="activeChatName">Dr. Dilshod Rahimov</h4>
+              <span class="online"><i class="dot online"></i> <span data-i18n="online">Onlayn</span></span>
+            </div>
+          </div>
+          <div class="chat-window-actions">
+            <button class="icon-btn" id="videoCallBtn" title="Video"><i class="fa-solid fa-video"></i></button>
+            <button class="icon-btn" id="phoneCallBtn" title="Call"><i class="fa-solid fa-phone"></i></button>
+            <button class="icon-btn" id="chatInfoBtn" title="Info"><i class="fa-solid fa-circle-info"></i></button>
+          </div>
+        </div>
+        <div class="chat-messages" id="chatMessages"></div>
+        <div class="chat-input-area">
+          <button class="icon-btn" id="attachBtn"><i class="fa-solid fa-paperclip"></i></button>
+          <input type="text" id="chatInput" placeholder="Xabar yozing..." data-i18n-placeholder="type_message" />
+          <button class="icon-btn" id="emojiBtn"><i class="fa-regular fa-face-smile"></i></button>
+          <button class="btn btn-primary btn-send" id="sendBtn"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- ============ HEALTH TOOLS & BLOG (YANGI) ============ -->
+  <section class="tools-section" id="tools">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">FOYDALI</span>
+      <h2>Tibbiy Kalkulyatorlar va Maqolalar</h2>
+      <p>Sog'lig'ingizni nazorat qiling va foydali ma'lumotlarni o'qing</p>
+    </div>
+
+    <div class="tools-grid">
+      <!-- Kalkulyatorlar -->
+      <div class="tools-card glass reveal">
+        <h3><i class="fa-solid fa-calculator" style="color:var(--emerald)"></i> Tibbiy Kalkulyatorlar</h3>
+        
+        <!-- BMI Kalkulyator -->
+        <div class="calc-box">
+          <h4>Tana vazni indeksi (BMI)</h4>
+          <div class="calc-inputs">
+            <input type="number" id="bmiWeight" placeholder="Vazn (kg)" />
+            <input type="number" id="bmiHeight" placeholder="Bo'y (sm)" />
+            <button class="btn btn-primary" id="calcBmiBtn">Hisoblash</button>
+          </div>
+          <div class="calc-result" id="bmiResult">
+            <span>Natija: </span><strong>—</strong>
+          </div>
+        </div>
+
+        <!-- Suv Normasi -->
+        <div class="calc-box">
+          <h4>Kunlik suv normasi</h4>
+          <div class="calc-inputs">
+            <input type="number" id="waterWeight" placeholder="Vazn (kg)" />
+            <button class="btn btn-primary" id="calcWaterBtn">Hisoblash</button>
+          </div>
+          <div class="calc-result" id="waterResult">
+            <span>Natija: </span><strong>—</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Maqolalar (Blog) -->
+      <div class="tools-card glass reveal">
+        <h3><i class="fa-solid fa-newspaper" style="color:var(--cyan)"></i> Tibbiy Maqolalar</h3>
+        <div class="blog-list">
+          <div class="blog-item">
+            <div class="blog-icon emerald"><i class="fa-solid fa-heart-pulse"></i></div>
+            <div>
+              <h4>Yurak salomatligini qanday saqlash kerak?</h4>
+              <p>Kardiologlar tavsiyalari va sog'lom turmush tarzi...</p>
+              <a href="#" class="link">Batafsil o'qish <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+          <div class="blog-item">
+            <div class="blog-icon cyan"><i class="fa-solid fa-brain"></i></div>
+            <div>
+              <h4>Bosh og'rig'ining asosiy sabablari</h4>
+              <p>Migren va stressni qanday ajratish mumkin?...</p>
+              <a href="#" class="link">Batafsil o'qish <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+          <div class="blog-item">
+            <div class="blog-icon amber"><i class="fa-solid fa-apple-whole"></i></div>
+            <div>
+              <h4>Immunitetni oshiruvchi 5 ta mahsulot</h4>
+              <p>Kuzgi shamollashlarga qarshi kurashish yo'llari...</p>
+              <a href="#" class="link">Batafsil o'qish <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="#home" class="logo">
+          <span class="logo-icon"><i class="fa-solid fa-heart-pulse"></i></span>
+          <span class="logo-text">Med<span>Book</span></span>
+        </a>
+        <p data-i18n="footer_text">Zamonaviy tibbiy ekotizim — sog'lig'ingiz uchun aqlli yechim.</p>
+      </div>
+      <div class="footer-links">
+        <h5 data-i18n="footer_platform">Platforma</h5>
+        <a href="#features" data-i18n="nav_features">Imkoniyatlar</a>
+        <a href="#doctors" data-i18n="nav_doctors">Shifokorlar</a>
+        <a href="#dashboard" data-i18n="nav_dashboard">Kabinet</a>
+      </div>
+      <div class="footer-links">
+        <h5 data-i18n="footer_company">Kompaniya</h5>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="#">Privacy</a>
+      </div>
+      <div class="footer-links">
+        <h5 data-i18n="footer_follow">Kuzatib boring</h5>
+        <a href="#"><i class="fa-brands fa-telegram"></i> Telegram</a>
+        <a href="#"><i class="fa-brands fa-instagram"></i> Instagram</a>
+        <a href="#"><i class="fa-brands fa-facebook"></i> Facebook</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 MedBook. <span data-i18n="footer_rights">Barcha huquqlar himoyalangan.</span></p>
+    </div>
+  </footer>
+
+  <!-- ============ LOGIN MODAL ============ -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal glass">
+    <button class="modal-close" data-close="loginModal"><i class="fa-solid fa-xmark"></i></button>
+    <h2 data-i18n="welcome_back">Xush kelibsiz</h2>
+    <p class="text-muted" data-i18n="login_subtitle">Hisobingizga kiring</p>
+
+    <form id="loginForm" novalidate>
+      <label>
+        <span data-i18n="phone">Telefon raqam</span>
+        <div class="input-with-icon">
+          <i class="fa-solid fa-phone"></i>
+          <input type="tel" id="loginPhone" placeholder="+998 90 123 45 67" autocomplete="tel" />
+        </div>
+        <span class="field-error" id="loginPhoneError"></span>
+      </label>
+
+      <label>
+        <span data-i18n="password">Parol</span>
+        <div class="input-with-icon">
+          <i class="fa-solid fa-lock"></i>
+          <input type="password" id="loginPassword" placeholder="••••••••" autocomplete="current-password" />
+          <button type="button" class="password-toggle" data-toggle="loginPassword">
+            <i class="fa-regular fa-eye"></i>
+          </button>
+        </div>
+        <span class="field-error" id="loginPasswordError"></span>
+      </label>
+
+      <div class="form-row">
+        <label class="checkbox-label small">
+          <input type="checkbox" id="loginRemember" checked />
+          <span data-i18n="remember_me">Eslab qolish</span>
+        </label>
+        <a href="#" class="link small" id="forgotPassword" data-i18n="forgot_password">Parolni unutdingizmi?</a>
+      </div>
+
+      <button class="btn btn-primary btn-block" type="submit" id="loginSubmitBtn">
+        <i class="fa-solid fa-right-to-bracket"></i>
+        <span data-i18n="login">Kirish</span>
+      </button>
+    </form>
+
+    <div class="divider"><span data-i18n="or">yoki</span></div>
+
+    <div class="social-logins">
+      <button class="icon-btn lg" type="button" data-social="Google" title="Google">
+        <i class="fa-brands fa-google"></i>
+      </button>
+      <button class="icon-btn lg" type="button" data-social="Telegram" title="Telegram">
+        <i class="fa-brands fa-telegram"></i>
+      </button>
+      <button class="icon-btn lg" type="button" data-social="Apple" title="Apple">
+        <i class="fa-brands fa-apple"></i>
+      </button>
+    </div>
+
+    <button class="btn btn-ghost btn-block" id="biometricBtn" type="button" style="margin-top:12px;">
+      <i class="fa-solid fa-fingerprint"></i>
+      <span data-i18n="biometric">Biometrik kirish</span>
+    </button>
+
+    <p class="modal-footer-text">
+      <span data-i18n="no_account">Hisobingiz yo'qmi?</span>
+      <a href="#" class="link" data-switch="register" data-i18n="register">Ro'yxatdan o'tish</a>
+    </p>
+  </div>
+</div>  
+
+ <!-- ============ REGISTER MODAL ============ -->
+<div class="modal-overlay" id="registerModal">
+  <div class="modal glass">
+    <button class="modal-close" data-close="registerModal"><i class="fa-solid fa-xmark"></i></button>
+    <h2 data-i18n="create_account">Ro'yxatdan o'tish</h2>
+    <p class="text-muted" data-i18n="register_subtitle">Yangi hisob yarating</p>
+
+    <form id="registerForm" novalidate>
+      <label>
+        <span data-i18n="full_name">To'liq ism</span>
+        <div class="input-with-icon">
+          <i class="fa-solid fa-user"></i>
+          <input type="text" id="regName" placeholder="Aziza Karimova" autocomplete="name" />
+        </div>
+        <span class="field-error" id="regNameError"></span>
+      </label>
+
+      <label>
+        <span data-i18n="phone">Telefon raqam</span>
+        <div class="input-with-icon">
+          <i class="fa-solid fa-phone"></i>
+          <input type="tel" id="regPhone" placeholder="+998 90 123 45 67" autocomplete="tel" />
+        </div>
+        <span class="field-error" id="regPhoneError"></span>
+      </label>
+
+      <label>
+        <span data-i18n="password">Parol</span>
+        <div class="input-with-icon">
+          <i class="fa-solid fa-lock"></i>
+          <input type="password" id="regPassword" placeholder="Kamida 6 belgi" autocomplete="new-password" />
+          <button type="button" class="password-toggle" data-toggle="regPassword">
+            <i class="fa-regular fa-eye"></i>
+          </button>
+        </div>
+        <div class="password-strength" id="passwordStrength">
+          <span></span><span></span><span></span><span></span>
+        </div>
+        <span class="field-error" id="regPasswordError"></span>
+      </label>
+
+      <label>
+        <span data-i18n="confirm_password">Parolni tasdiqlang</span>
+        <div class="input-with-icon">
+          <i class="fa-solid fa-lock"></i>
+          <input type="password" id="regConfirmPassword" placeholder="Parolni qayta kiriting" autocomplete="new-password" />
+          <button type="button" class="password-toggle" data-toggle="regConfirmPassword">
+            <i class="fa-regular fa-eye"></i>
+          </button>
+        </div>
+        <span class="field-error" id="regConfirmPasswordError"></span>
+      </label>
+
+      <label class="checkbox-label small">
+        <input type="checkbox" id="regAgree" />
+        <span>
+          <span data-i18n="agree_terms">Men</span>
+          <a href="#" class="link" data-i18n="terms">foydalanish shartlari</a>
+          <span data-i18n="and">va</span>
+          <a href="#" class="link" data-i18n="privacy">maxfiylik siyosati</a>
+          <span data-i18n="agree_terms_end">ga roziman</span>
+        </span>
+      </label>
+      <span class="field-error" id="regAgreeError"></span>
+
+      <button class="btn btn-primary btn-block" type="submit" id="registerSubmitBtn">
+        <i class="fa-solid fa-user-plus"></i>
+        <span data-i18n="register">Ro'yxatdan o'tish</span>
+      </button>
+    </form>
+
+    <p class="modal-footer-text">
+      <span data-i18n="has_account">Hisobingiz bormi?</span>
+      <a href="#" class="link" data-switch="login" data-i18n="login">Kirish</a>
+    </p>
+  </div>
+</div>
+
+  <!-- ============ AI MODAL ============ -->
+  <div class="modal-overlay" id="aiModal">
+    <div class="modal glass modal-lg">
+      <button class="modal-close" data-close="aiModal"><i class="fa-solid fa-xmark"></i></button>
+      <h2><i class="fa-solid fa-brain" style="color:var(--emerald)"></i> <span data-i18n="ai_title">AI Simptom Tekshirgich</span></h2>
+      <p class="text-muted" data-i18n="ai_desc">Shikoyatlaringizni yozing — AI sizga mutaxassis tavsiya qiladi</p>
+      <div class="ai-form">
+        <textarea id="aiInput" placeholder="Masalan: Boshim og'riyapti, isitmam 38°C, yo'talayapman..." rows="4"></textarea>
+        <div class="ai-chips">
+          <span class="chip" data-symptom="Bosh og'rig'i">Bosh og'rig'i</span>
+          <span class="chip" data-symptom="Isitma">Isitma</span>
+          <span class="chip" data-symptom="Yo'tal">Yo'tal</span>
+          <span class="chip" data-symptom="Qorin og'rig'i">Qorin og'rig'i</span>
+          <span class="chip" data-symptom="Holsizlik">Holsizlik</span>
+        </div>
+        <button class="btn btn-primary btn-block" id="aiAnalyze">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          <span data-i18n="ai_analyze">Tahlil qilish</span>
+        </button>
+        <div class="ai-result" id="aiResult"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ BOOKING MODAL ============ -->
+  <div class="modal-overlay" id="bookingModal">
+    <div class="modal glass modal-lg">
+      <button class="modal-close" data-close="bookingModal"><i class="fa-solid fa-xmark"></i></button>
+      <div id="bookingContent"></div>
+    </div>
+  </div>
+
+  <!-- ============ MAP MODAL ============ -->
+  <div class="modal-overlay" id="mapModal">
+    <div class="modal glass modal-lg">
+      <button class="modal-close" data-close="mapModal"><i class="fa-solid fa-xmark"></i></button>
+      <h2><i class="fa-solid fa-map-location-dot" style="color:var(--emerald)"></i> <span data-i18n="map_title">Yaqin klinikalar</span></h2>
+      <div class="map-container">
+        <div class="map-placeholder">
+          <i class="fa-solid fa-map"></i>
+          <p data-i18n="map_loading">Xarita yuklanmoqda...</p>
+        </div>
+        <div class="clinics-list" id="clinicsList"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ FEATURE MODAL ============ -->
+  <div class="modal-overlay" id="featureModal">
+    <div class="modal glass">
+      <button class="modal-close" data-close="featureModal"><i class="fa-solid fa-xmark"></i></button>
+      <div id="featureContent"></div>
+    </div>
+  </div>
+
+<!-- ============ DOCTOR PROFILE MODAL ============ -->
+<div class="modal-overlay" id="doctorProfileModal">
+  <div class="modal glass modal-profile">
+    <button class="modal-close" data-close="doctorProfileModal">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <div id="doctorProfileContent">
+      <!-- JS bilan to'ldiriladi -->
+    </div>
+  </div>
+</div>
+
+<!-- ============ FORGOT PASSWORD MODAL ============ -->
+<div class="modal-overlay" id="forgotModal">
+  <div class="modal glass">
+    <button class="modal-close" data-close="forgotModal"><i class="fa-solid fa-xmark"></i></button>
+    <h2 data-i18n="reset_password">Parolni tiklash</h2>
+    <p class="text-muted" data-i18n="reset_password_desc">Telefon raqamingizni kiriting — SMS kod yuboramiz</p>
+    <form id="forgotForm" novalidate>
+      <label>
+        <span data-i18n="phone">Telefon raqam</span>
+        <div class="input-with-icon">
+          <i class="fa-solid fa-phone"></i>
+          <input type="tel" id="forgotPhone" placeholder="+998 90 123 45 67" />
+        </div>
+        <span class="field-error" id="forgotPhoneError"></span>
+      </label>
+      <button class="btn btn-primary btn-block" type="submit">
+        <i class="fa-solid fa-paper-plane"></i>
+        <span data-i18n="send_code">Kod yuborish</span>
+      </button>
+    </form>
+  </div>
+</div>
+  <!-- ============ BILDIRISHNOMALAR OYNASI ============ -->
+  <div class="notif-dropdown glass" id="notifDropdown">
+    <div class="notif-header">
+      <h4>Bildirishnomalar</h4>
+      <span class="link" style="font-size:0.75rem; cursor:pointer;">Barchasini o'qish</span>
+    </div>
+    <div class="notif-list">
+      <div class="notif-item unread">
+        <div class="notif-icon emerald"><i class="fa-solid fa-calendar-check"></i></div>
+        <div>
+          <p><b>Ertaga qabulingiz bor</b><br><small>Dr. Dilshod R. bilan soat 10:30 da</small></p>
+          <span class="notif-time">Hozirgina</span>
+        </div>
+      </div>
+      <div class="notif-item unread">
+        <div class="notif-icon cyan"><i class="fa-solid fa-pills"></i></div>
+        <div>
+          <p><b>Dori ichish vaqti keldi</b><br><small>Aspirin 100mg - 14:00</small></p>
+          <span class="notif-time">10 daqiqa oldin</span>
+        </div>
+      </div>
+      <div class="notif-item">
+        <div class="notif-icon amber"><i class="fa-solid fa-file-waveform"></i></div>
+        <div>
+          <p><b>Tahlil natijasi tayyor</b><br><small>Umumiy qon tahlili</small></p>
+          <span class="notif-time">Kecha</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Toast -->
+  <div class="toast-container" id="toastContainer"></div>
+  <script src="js/data.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/booking.js"></script>
+  <script src="js/ai.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/doctor-profile.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/tools.js"></script>
+<div class="modal-overlay" id="videoCallModal">
+  <div class="modal glass" style="max-width:600px; background:#000;">
+    <button class="modal-close" data-close="videoCallModal" style="color:#fff; z-index:10;"><i class="fa-solid fa-xmark"></i></button>
+    <div style="position:relative; aspect-ratio:16/9; border-radius:var(--radius-lg); overflow:hidden; background:linear-gradient(135deg,#1e293b,#0f172a); display:grid; place-items:center;">
+      <div style="text-align:center; color:#fff;">
+        <i class="fa-solid fa-user-doctor" style="font-size:3rem; opacity:0.5; margin-bottom:12px;"></i>
+        <h3>Dr. Dilshod Rahimov</h3>
+        <p style="color:#94a3b8; font-size:0.85rem;">Ulanmoqda...</p>
+      </div>
+      <div style="position:absolute; bottom:16px; right:16px; width:100px; aspect-ratio:3/4; background:#333; border-radius:8px; border:2px solid #fff;"></div>
+      <div style="position:absolute; bottom:20px; left:50%; transform:translateX(-50%); display:flex; gap:12px;">
+        <button class="icon-btn" style="background:rgba(255,255,255,0.2);"><i class="fa-solid fa-microphone"></i></button>
+        <button class="icon-btn" style="background:rgba(244,63,94,0.8); color:#fff;"><i class="fa-solid fa-phone-slash"></i></button>
+        <button class="icon-btn" style="background:rgba(255,255,255,0.2);"><i class="fa-solid fa-video"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
